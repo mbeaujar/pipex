@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:36:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/09 15:59:58 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/09 16:56:53 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ void exec_pipe(t_var *var)
 
     i = 0;
     fd = 0;
-    //printf("len loop : %d\n", var->len - 2);
     while (i < var->len - 2)
     {
         str = ft_split(var->argv[2 + i], ' ');
-        //printf("%s  fd 0 : %d   fd 1 : %d\targv : %s\n", str[0], var->std[fd], var->std[fd + 1], var->argv[2 + i]);
         var->pid[i] = add_child(str, var->std[fd], var->std[fd + 1], var);
         close(var->std[fd]);
         close(var->std[fd + 1]);

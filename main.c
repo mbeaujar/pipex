@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:19:35 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/09 16:16:42 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/09 17:08:37 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int refill_std(int *std, int len, int argc, char **argv)
     if (std[0] == -1)
         return (display_file(argv[1]));
     i = 1;
-    while (i < ((len - 2)))
+    while (i < ((len - 2) * 2 - 1))
     {
         if (pipe(fd) == -1)
             return (1);
