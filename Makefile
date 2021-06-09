@@ -15,6 +15,8 @@ OBJS = ${SRCS:.c=.o}
 
 all : $(NAME)
 
+bonus :$(NAME)
+
 $(NAME) : $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
