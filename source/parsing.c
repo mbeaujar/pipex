@@ -6,53 +6,61 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:31:19 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/09 16:00:02 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/10 18:22:48 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }
 
-void free_tab(char **str)
+void	secure_free(char *str)
 {
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        free(str[i]);
-        i++;
-    }
-    free(str);
+	if (str)
+		free(str);
 }
 
-void putendl(char *str)
+void	free_tab(char **str)
 {
-    write(1, str, ft_strlen(str));
-    write(1, "\n", 1);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
 
-void print_tab(char **str)
+void	putendl(char *str)
 {
-    int i;
-
-    i = 0;
-    while(str[i])
-        printf("%s\n", str[i++]);
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
 }
 
-int display_file(char *str)
+int	display_file(char *str, int *std, int len)
 {
-    write(1, str, ft_strlen(str));
-    write(1, " ", 1);
-    return (1);
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (std[i] != -1 && std[i] != 0 && std[i] != 1)
+			close(std[i]);
+		i++;
+	}
+	write(1, str, ft_strlen(str));
+	write(1, " ", 1);
+	return (1);
 }
