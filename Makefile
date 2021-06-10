@@ -28,7 +28,6 @@ clean :
 	@$(RM) $(NAME)
 
 fclean : clean
-	@$(RM) $(OBJS)
 
 re : fclean all
 
