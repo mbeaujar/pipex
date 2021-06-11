@@ -6,15 +6,15 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:36:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/10 18:09:46 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 13:51:52 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void close_all(int *std, int in, int out, int len)
+void	close_all(int *std, int in, int out, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < len)
@@ -23,6 +23,9 @@ void close_all(int *std, int in, int out, int len)
 			close(std[i]);
 		i++;
 	}
+	close(1);
+	close(2);
+	close(3);
 }
 
 int	add_child(char **argv, int in, int out, t_var *var)
@@ -45,9 +48,6 @@ int	add_child(char **argv, int in, int out, t_var *var)
 		putendl(strerror(errno));
 		free(var->pid);
 		close_all(var->std, in, out, (var->len - 2) * 2);
-		close(1);
-		close(2);
-		close(0);
 		free(var->std);
 		free_tab(argv);
 		exit(125 + errno);
