@@ -35,7 +35,10 @@ void	create_pipe(t_var *var)
 	var->std_in = fd[0];
 	var->std_out = fd[1];
 	if (var->str)
+	{
 		write(fd[1], var->str, ft_strlen(var->str));
+		free(var->str);
+	}
 }
 
 void	create_here_document(t_var *var)
@@ -58,8 +61,10 @@ void	create_here_document(t_var *var)
 			var->str = ft_strjoin(var->str, line);
 		if (ret == 0)
 			break ;
+		free(line);
 		i++;
 	}
+	free(line);
 	if (ret == 0)
 		putstr(var, i);
 	create_pipe(var);

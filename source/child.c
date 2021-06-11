@@ -12,6 +12,19 @@
 
 #include "pipex.h"
 
+void close_all(int *std, int in, int out, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (std[i] != in && std[i] != out)
+			close(std[i]);
+		i++;
+	}
+}
+
 int	add_child(char **argv, int in, int out, t_var *var)
 {
 	int	pid;
@@ -30,6 +43,13 @@ int	add_child(char **argv, int in, int out, t_var *var)
 			close(var->std_out);
 		execve(argv[0], argv, var->envp);
 		putendl(strerror(errno));
+		free(var->pid);
+		close_all(var->std, in, out, (var->len - 2) * 2);
+		close(1);
+		close(2);
+		close(0);
+		free(var->std);
+		free_tab(argv);
 		exit(125 + errno);
 	}
 	return (pid);

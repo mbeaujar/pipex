@@ -88,5 +88,9 @@ int	main(int argc, char **argv, char **envp)
 	}
 	exec_pipe(&var);
 	free(var.std);
+	free(var.pid);
+	close(1);
+	close(0);
+	close(2);
 	return (0);
 }
