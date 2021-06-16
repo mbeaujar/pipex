@@ -6,11 +6,22 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:19:35 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/10 18:22:55 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/16 17:03:33 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	select_open(char *path)
+{
+	int	fd;
+
+	if (BONUS)
+		fd = open(path, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU);
+	else
+		fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	return (fd);
+}
 
 int	refill_std(int *std, int len, t_var *var, char **argv)
 {
@@ -33,8 +44,7 @@ int	refill_std(int *std, int len, t_var *var, char **argv)
 		std[i] = fd[0];
 		i++;
 	}
-	std[((len - 2) * 2) - 1] = open(argv[var->argc - 1], O_CREAT
-			| O_WRONLY | O_TRUNC, S_IRWXU);
+	std[((len - 2) * 2) - 1] = select_open(argv[var->argc - 1]);
 	if (std[((len - 2) * 2) - 1] == -1)
 		return (display_file(argv[i + 1], std, i));
 	return (0);
@@ -73,7 +83,7 @@ int	main(int argc, char **argv, char **envp)
 	t_var	var;
 
 	errno = 0;
-	if (argc < 5)
+	if (argc < 5 || (argc > 5 && BONUS == 0))
 		return (1);
 	if (init_malloc(&var, argc, argv, envp) == 1)
 		return (1);
