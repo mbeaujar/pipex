@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 17:50:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 13:05:03 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 16:27:44 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,23 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	else
 		ft_putchar_fd(nb + '0', fd);
+}
+
+int	normi_main(char **argv, char **envp)
+{
+	char	**leaks;
+
+	leaks = ft_split(argv[2], ' ');
+	argv[2] = search_path(leaks[0], envp);
+	free_tab(leaks);
+	if (!argv[2])
+		return (1);
+	leaks = ft_split(argv[3], ' ');
+	argv[3] = search_path(leaks[0], envp);
+	free_tab(leaks);
+	if (!argv[3])
+		return (free_argv(argv, 2) + 1);
+	return (0);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)

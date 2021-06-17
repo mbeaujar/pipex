@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:19:35 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 16:10:18 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 16:27:13 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,21 +90,12 @@ int	free_argv(char **argv, int state)
 int	main(int argc, char **argv, char **envp)
 {
 	t_var	var;
-	char **leaks;
 
 	errno = 0;
 	if (argc < 5 || (argc > 5 && BONUS == 0))
 		return (1);
-	leaks = ft_split(argv[2], ' ');
-	//printf("%s\n", leaks[0]);
-	argv[2] = search_path(leaks[0], envp);
-	free_tab(leaks);
-	if (!argv[2])
-		return (3);
-	leaks = ft_split(argv[3], ' ');
-	//printf("%s\n", leaks[0]);
-	argv[3] = search_path(leaks[0], envp);
-	free_tab(leaks);
+	if (normi_main(argv, envp))
+		return (1);
 	if (!argv[3] || (init_malloc(&var, argc, argv, envp)))
 		return (free_argv(argv, 2));
 	if (BONUS)
