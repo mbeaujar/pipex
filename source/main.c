@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:19:35 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/16 17:03:33 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:15:11 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,15 @@ int	init_malloc(t_var *var, int argc, char **argv, char **envp)
 	return (0);
 }
 
+int	free_argv(char **argv, int state)
+{
+	if (state == 1 || state == 3)
+		free(argv[3]);
+	if (state == 2 || state == 3)
+		free(argv[2]);
+	return (0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_var	var;
@@ -85,8 +94,12 @@ int	main(int argc, char **argv, char **envp)
 	errno = 0;
 	if (argc < 5 || (argc > 5 && BONUS == 0))
 		return (1);
-	if (init_malloc(&var, argc, argv, envp) == 1)
-		return (1);
+	argv[2] = search_path(argv[2], envp);
+	if (!argv[2])
+		return (3);
+	argv[3] = search_path(argv[3], envp);
+	if (!argv[3] || (init_malloc(&var, argc, argv, envp)))
+		return (free_argv(argv, 2));
 	if (BONUS)
 		create_here_document(&var);
 	if (refill_std(var.std, var.len, &var, argv))
@@ -94,13 +107,10 @@ int	main(int argc, char **argv, char **envp)
 		free(var.std);
 		free(var.pid);
 		putendl(strerror(errno));
-		return (1);
+		return (free_argv(argv, 3));
 	}
 	exec_pipe(&var);
 	free(var.std);
 	free(var.pid);
-	close(1);
-	close(0);
-	close(2);
-	return (0);
+	return (free_argv(argv, 3));
 }

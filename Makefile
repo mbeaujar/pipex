@@ -13,7 +13,8 @@ SRCS = source/child.c \
 	source/ft_strcmp.c \
 	source/ft_strjoin.c \
 	source/put.c \
-	source/bonus.c 
+	source/bonus.c \
+	source/search_path.c
 
 all : $(NAME)
 
