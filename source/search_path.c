@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 11:39:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 13:22:19 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:23:31 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*finding_path(char *str, char **path)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (NULL);
 	while (path[i])
 	{
 		path[i] = ft_strjoin_gnl(ft_strjoin_gnl(path[i], "/"), str);
