@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:35:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 13:15:26 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 14:15:12 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	create_here_document(t_var *var);
 char	*search_path(char *str, char **envp);
 char	*ft_strdup(char *s1);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		free_argv(char **argv, int state);
 
 #endif

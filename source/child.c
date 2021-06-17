@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:36:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 13:51:52 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 14:15:26 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	add_child(char **argv, int in, int out, t_var *var)
 		close_all(var->std, in, out, (var->len - 2) * 2);
 		free(var->std);
 		free_tab(argv);
+		free_argv(var->argv, 3);
 		exit(125 + errno);
 	}
 	return (pid);
