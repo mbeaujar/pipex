@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 16:30:06 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/10 18:18:37 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:41:17 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	create_here_document(t_var *var)
 		if (ft_strcmp(line, var->argv[1]) == 0)
 			break ;
 		else
-			var->str = ft_strjoin(var->str, line);
+			var->str = ft_strjoin_gnl(var->str, line);
 		if (ret == 0)
 			break ;
 		free(line);

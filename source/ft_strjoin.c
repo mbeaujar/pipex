@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 19:24:48 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/10 18:02:12 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:41:29 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	tab[i + y] = '\n';
 	tab[i + y + 1] = '\0';
-	secure_free(s1);
 	return (tab);
 }
