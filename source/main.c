@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:19:35 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 13:15:11 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:42:29 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	main(int argc, char **argv, char **envp)
 		free(var.std);
 		free(var.pid);
 		putendl(strerror(errno));
-		return (free_argv(argv, 3));
+		return (free_argv(argv, 3) + 1);
 	}
 	exec_pipe(&var);
 	free(var.std);

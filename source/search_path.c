@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 11:39:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 13:40:30 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:48:05 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*finding_path(char *str, char **path)
 		free(std);
 		i++;
 	}
-	if (str[0] == '/' || (str[0] == '.' && str[0] == '/'))
+	if (str[0] == '/' || (str[0] == '.' && str[1] == '/'))
 		return (ft_strdup(str));
 	return (NULL);
 }
@@ -62,7 +62,6 @@ char	*search_path(char *str, char **envp)
 		return (NULL);
 	path = finding_path(str, new_path);
 	free_tab(new_path);
-	new_path = NULL;
 	//for (int i = 0; new_path[i]; i++)
 	//	printf("%s\n", new_path[i]);
 	return (path);
