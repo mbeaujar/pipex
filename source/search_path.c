@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 11:39:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 13:37:12 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:39:45 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ char	*search_path(char *str, char **envp)
 	if (!new_path)
 		return (NULL);
 	path = finding_path(str, new_path);
-	//free_tab(new_path);
-	for (int i = 0; new_path[i]; i++)
-		printf("%s\n", new_path[i]);
+	free_tab(new_path);
+	new_path = NULL;
+	//for (int i = 0; new_path[i]; i++)
+	//	printf("%s\n", new_path[i]);
 	return (path);
 }
