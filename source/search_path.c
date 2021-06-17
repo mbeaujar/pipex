@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 11:39:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 13:29:49 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:35:42 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ char	*search_path(char *str, char **envp)
 	path = search_var_path(envp);
 	if (!path)
 		return (NULL);
+	if (ft_strlen(path) <= 5)
+		return (NULL);
 	new_path = ft_split(path + 5, ':');
 	if (!new_path)
 		return (NULL);
 	path = finding_path(str, new_path);
-	//free_tab(new_path);
+	free_tab(new_path);
 	return (path);
 }
