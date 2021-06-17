@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 11:39:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 13:23:31 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:29:49 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,17 @@ char	*search_var_path(char **envp)
 char	*finding_path(char *str, char **path)
 {
 	int	i;
+	char *std;
 
 	i = 0;
 	if (!str)
 		return (NULL);
 	while (path[i])
 	{
-		path[i] = ft_strjoin_gnl(ft_strjoin_gnl(path[i], "/"), str);
-		if (access(path[i], R_OK) != -1)
-			return (path[i]);
-		free(path[i]);
+		std = ft_strjoin_gnl(ft_strjoin_gnl(path[i], "/"), str);
+		if (access(std, R_OK) != -1)
+			return (std);
+		free(std);
 		i++;
 	}
 	if (str[0] == '/' || (str[0] == '.' && str[0] == '/'))
@@ -58,6 +59,6 @@ char	*search_path(char *str, char **envp)
 	if (!new_path)
 		return (NULL);
 	path = finding_path(str, new_path);
-	free_tab(new_path);
+	//free_tab(new_path);
 	return (path);
 }
