@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:19:35 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 16:38:14 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/21 10:53:25 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int	refill_std(int *std, int len, t_var *var, char **argv)
 		std[0] = open(argv[1], O_RDWR);
 	else
 		std[0] = var->std_in;
-	if (std[0] == -1)
-		return (display_file(argv[1], std, i));
-	while (i < ((len - 2) * 2 - 1))
+	while (std[0] != -1 && i < ((len - 2) * 2 - 1))
 	{
 		if (pipe(fd) == -1)
 			return (display_file("Bash: ", std, i));
@@ -47,6 +45,8 @@ int	refill_std(int *std, int len, t_var *var, char **argv)
 	std[((len - 2) * 2) - 1] = select_open(argv[var->argc - 1]);
 	if (std[((len - 2) * 2) - 1] == -1)
 		return (display_file(argv[i + 1], std, i));
+	if (std[0] == -1)
+		return (display_file(argv[1], std, i));
 	return (0);
 }
 
