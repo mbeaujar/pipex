@@ -16,19 +16,26 @@ SRCS = source/child.c \
 	source/bonus.c \
 	source/search_path.c
 
+
+OBJS = ${SRCS:.c=.o}
+
+%.o : %.c 
+	@$(CC) $(CFLAGS) -I$(HEADER) $< -c -o $@
+
 all : $(NAME)
 
 bonus : $(OBJS)
-	@$(CC) $(CFLAGS) -D BONUS=1 -I$(HEADER) $(SRCS) -o $(NAME)
+	@$(CC) $(CFLAGS) -D BONUS=1 -I$(HEADER) $(OBJS) -o $(NAME)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) -I$(HEADER) $(SRCS) -o $(NAME)
+	@$(CC) $(CFLAGS) -I$(HEADER) $(OBJS) -o $(NAME)
 
 
 clean :
-	@$(RM) $(NAME)
+	@$(RM) $(OBJS)
 
 fclean : clean
+	@$(RM) $(NAME)
 
 re : fclean all
 
