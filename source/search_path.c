@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 11:39:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 14:10:36 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:30:03 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ char	*finding_path(char *str, char **path)
 		free(std);
 		i++;
 	}
-	if (str[0] == '/' || (str[0] == '.' && str[1] == '/'))
+	if (access(str, R_OK) != -1)
 		return (ft_strdup(str));
+	write(1, "pipex: '", 8);
+	write(1, str, ft_strlen(str));
+	write(1, "' : command not found\n", 22);
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:35:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 16:24:58 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:23:32 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_strlen(char *str);
 void	putendl(char *str);
 void	print_tab(char **str);
 char	**ft_split(char const *s, char c);
-void	exec_pipe(t_var *var);
+int		exec_pipe(t_var *var);
 void	free_tab(char **str);
 void	secure_free(char *str);
 int		display_file(char *str, int *std, int len);
@@ -54,7 +54,7 @@ void	create_here_document(t_var *var);
 char	*search_path(char *str, char **envp);
 char	*ft_strdup(char *s1);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		free_argv(char **argv, int state);
+int		free_argv(char **argv, int state, int ret);
 int		normi_main(char **argv, char **envp);
 
 #endif

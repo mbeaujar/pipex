@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 17:50:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/22 16:34:23 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:23:51 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	normi_main(char **argv, char **envp)
 	free_tab(leaks);
 	argv[3] = tmp;
 	if (!argv[3])
-		return (free_argv(argv, 2) + 1);
+		return (free_argv(argv, 2, 0) + 1);
 	return (0);
 }
 

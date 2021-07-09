@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:36:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/17 16:02:13 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:27:44 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ int	add_child(char **argv, int in, int out, t_var *var)
 		close_all(var->std, in, out, (var->len - 2) * 2);
 		free(var->std);
 		free_tab(argv);
-		free_argv(var->argv, 3);
+		free_argv(var->argv, 3, 0);
 		exit(125 + errno);
 	}
 	return (pid);
 }
 
-void	fct_wait(t_var *var)
+int	fct_wait(t_var *var)
 {
 	int	i;
 	int	fd;
@@ -67,9 +67,10 @@ void	fct_wait(t_var *var)
 		waitpid(var->pid[i], &fd, 0);
 		i++;
 	}
+	return (WEXITSTATUS(fd));
 }
 
-void	exec_pipe(t_var *var)
+int	exec_pipe(t_var *var)
 {
 	int		i;
 	int		fd;
@@ -92,5 +93,5 @@ void	exec_pipe(t_var *var)
 		free_tab(str);
 		i++;
 	}
-	fct_wait(var);
+	return (fct_wait(var));
 }
